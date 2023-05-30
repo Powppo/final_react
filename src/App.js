@@ -1,9 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
+
 //import Login from "./components/html/login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
+
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navigation from "./components/Navigation";
+
+import Home from "./components/Home";
+import Students from "./components/Students";
+import Manage from "./components/Manage";
+import AdmissionResult from "./components/AdmissionResult";
 
 
 function App() {
@@ -13,7 +23,12 @@ function App() {
       <Route exact path='/' element={<Login/>} />
         <Route path='/Register' element={<Register/>} />
         <Route path='/Dashboard' element={[<Navbar/>, <Dashboard/>]}/>
+        <Route exact path='/InputData' element={[<Navigation/>,<Home/>]}/>
+        <Route exact path='/students' element={[<Navigation/>,<Students/>]}/>
+        <Route exact path='/manage' element={[<Navigation/>,<Manage/>]}/>
+        <Route exact path='/admissionresult' element={[<Navigation/>,<AdmissionResult/>]}/>
       </Routes>
+      
     </BrowserRouter>
       
   );
