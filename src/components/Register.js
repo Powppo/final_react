@@ -33,7 +33,7 @@ const Register = () => {
         <div className="container">
           <div className="column is-centered">
             <div className="column is-4-desktop">
-                <form onSubmit={Register} className="box">
+                <form onSubmit={ Register } className="box">
                 <p className='has-text-centered'>{msg}</p>
                     <div className="field mt-5">
                         <label className="label">Name</label>
