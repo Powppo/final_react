@@ -24,8 +24,13 @@ function App() {
       <Route exact path='/' element={<Login/>} />
         <Route path='/Register' element={<Register/>} />
         <Route path='/Dashboard' element={[<Navbar/>, <Dashboard/>]}/>
+<<<<<<< HEAD
         <Route path='/Register' element={<Register/>} />
         <Route path='/User' element={<User/>} />
+=======
+        
+        <Route path='/user' element={<User/>} />
+>>>>>>> c9514a13c1bb682b0017da0bee7e5de87d3e8ce4
 
         <Route exact path='/InputData' element={[<Navigation/>,<Home/>]}/>
         <Route exact path='/students' element={[<Navigation/>,<Students/>]}/>
