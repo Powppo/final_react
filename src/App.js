@@ -24,7 +24,8 @@ function App() {
       <Route exact path='/' element={<Login/>} />
         <Route path='/Register' element={<Register/>} />
         <Route path='/Dashboard' element={[<Navbar/>, <Dashboard/>]}/>
-        <Route path='/Register' element={<Register/>} />
+        
+        <Route path='/user' element={<User/>} />
 
         <Route exact path='/InputData' element={[<Navigation/>,<Home/>]}/>
         <Route exact path='/students' element={[<Navigation/>,<Students/>]}/>
