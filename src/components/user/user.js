@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 
 const User = () => {
     const [nilai, setNilai] = useState('');
@@ -25,7 +27,7 @@ const User = () => {
                     <div className="column is-centered">
                         <div className="column is-4-desktop">
                             <form onSubmit={User} className="box">
-                                <p className='has-text-centered'>{msg}</p>
+                                <p className='has-text-centered'></p>
                                 <div className="field mt-5">
                                     <label className="label">Nilai</label>
                                     <div className="controls">

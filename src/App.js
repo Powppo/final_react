@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
-import User from "./components/user";
+import User from "./components/user/user"
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
