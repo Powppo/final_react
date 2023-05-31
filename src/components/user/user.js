@@ -20,34 +20,64 @@ const User = () => {
         })
     }
 
+    const handleSertifChange = (event) => {
+        const file = event.target.files[0];
+        if (file && file.size <= 5 * 1024 * 1024) {
+            setSertif(file);
+        } else {
+            setSertif(null);
+            alert('Please select a file up to 5MB in size.');
+        }
+    };
     return (
         <section className="hero has-background-grey-light is-fullheight is-fullwidth">
             <div className="hero-body">
                 <div className="container">
-                    <div className="column is-centered">
+                    <div className="columns is-centered">
                         <div className="column is-4-desktop">
                             <form onSubmit={User} className="box">
-                                <p className='has-text-centered'></p>
+                                <p className="has-text-centered"></p>
                                 <div className="field mt-5">
                                     <label className="label">Nilai</label>
-                                    <div className="controls">
-                                        <input type="text" className="input" placeholder="Nilai" value={nilai} onChange={(e) => setNilai(e.target.value)} />
+                                    <div className="control">
+                                        <input
+                                            type="text"
+                                            className="input"
+                                            placeholder="Nilai"
+                                            value={nilai}
+                                            onChange={(e) => setNilai(e.target.value)}
+                                        />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Sertif</label>
-                                    <div className="controls">
-                                        <input type="text" className="input" placeholder="Sertifikat" value={sertif} onChange={(e) => setSertif(e.target.value)} />
+                                    <div className="control">
+                                        <input
+                                            type="file"
+                                            className="input"
+                                            placeholder="Sertifikat"
+                                            value={sertif}
+                                            accept=".pdf"
+                                            onChange={(e) => handleSertifChange(e)}
+                                        />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Sekolah</label>
-                                    <div className="controls">
-                                        <input type="text" className="input" placeholder="Sekolah" value={sekolah} onChange={(e) => setSekolah(e.target.value)} />
+                                    <div className="control">
+                                        <input
+                                            type="text"
+                                            className="input"
+                                            placeholder="Sekolah"
+                                            value={sekolah}
+                                            onChange={(e) => setSekolah(e.target.value)}
+                                        />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
-                                    <button className="button is-success is-fullwidth">User</button>
+                                    <button className="button is-success is-fullwidth">
+                                        Submit
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -55,6 +85,7 @@ const User = () => {
                 </div>
             </div>
         </section>
+
     )
 }
 
