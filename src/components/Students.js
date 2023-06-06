@@ -4,18 +4,18 @@ import { getStudents } from '../services/StudentService';
 import "../App.css";
 
 const Students = () => {
-//   const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState([]);
 
-//   useEffect(() => {
-//    let mounted = true;
-//    getStudents()
-//      .then(data => {
-//        if(mounted) {
-//          setStudents(data)
-//        }
-//      })
-//    return () => mounted = false;
-//  }, [])
+  useEffect(() => {
+   let mounted = true;
+   getStudents()
+     .then(data => {
+       if(mounted) {
+         setStudents(data)
+       }
+     })
+   return () => mounted = false;
+ }, [])
 
   return(
    <div className="container-fluid side-container">
@@ -25,14 +25,14 @@ const Students = () => {
         <thead>
             <tr>
             <th>ID</th>
-            <th>Report Average Score</th>
-            <th>Achivement</th>
-            <th>Skill Certificate</th>
-            <th>Interview Result</th>
-            <th>School Accreditation</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Registration No</th>
+            <th>Email</th>
+            <th>Course</th>
             </tr>
         </thead>
-        {/* <tbody>
+        <tbody>
             {students.map((stu) =>
             <tr key={stu.id}>
                 <td>{stu.studentId}</td>
@@ -42,7 +42,7 @@ const Students = () => {
                 <td>{stu.Email}</td>
                 <td>{stu.Course}</td>
             </tr>)}
-        </tbody> */}
+        </tbody>
     </Table>
     </div>
   </div>

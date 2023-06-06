@@ -1,6 +1,6 @@
 import React from 'react';
-import {Modal, Col, Row, Form, Button, FormControl, FormGroup, FormLabel} from 'react-bootstrap';
-
+import {Modal, Col, Row, Form, Button} from 'react-bootstrap';
+import {FormControl, FormGroup, FormLabel} from 'react-bootstrap';
 import { addStudent } from '../services/StudentService';
 
 
@@ -37,23 +37,23 @@ const AddStudentModal = (props) => {
                         <Col sm={6}>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="FirstName">
-                                    <Form.Label>Report Average Score</Form.Label>
+                                    <Form.Label>First Name</Form.Label>
                                     <Form.Control type="text" name="FirstName" required placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="LastName">
-                                    <Form.Label>Achivement</Form.Label>
+                                    <Form.Label>Last Name</Form.Label>
                                     <Form.Control type="text" name="LastName" required placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="RegistrationNo">
-                                    <Form.Label>Skill Certificate</Form.Label>
+                                    <Form.Label>Registration No.</Form.Label>
                                     <Form.Control type="text" name="RegistrationNo" required placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="Email">
-                                    <Form.Label>Interview Result</Form.Label>
+                                    <Form.Label>Email</Form.Label>
                                     <Form.Control type="text" name="Email" required placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="Course">
-                                    <Form.Label>School Accreditation</Form.Label>
+                                    <Form.Label>Course</Form.Label>
                                     <Form.Control type="text" name="Course" required placeholder="" />
                             </Form.Group>
                             <Form.Group>

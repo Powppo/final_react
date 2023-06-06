@@ -1,6 +1,7 @@
 import React,{ useEffect, useState }from 'react';
-import {Table, Button,ButtonToolbar} from 'react-bootstrap';
+import {Table} from 'react-bootstrap';
 
+import {Button,ButtonToolbar } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import AddStudentModal from "./AddStudentModal";
@@ -15,22 +16,22 @@ const Manage = () => {
     const [editStudent, setEditStudent] = useState([]);
     const [isUpdated, setIsUpdated] = useState(false);
 
-    // useEffect(() => {
-    //    let mounted = true;
-    //    if(students.length && !isUpdated) {
-    //     return;
-    //     }
-    //    getStudents()
-    //      .then(data => {
-    //        if(mounted) {
-    //          setStudents(data);
-    //        }
-    //      })
-    //    return () => {
-    //       mounted = false;
-    //       setIsUpdated(false);
-    //    }
-    //  }, [isUpdated, students])
+    useEffect(() => {
+       let mounted = true;
+       if(students.length && !isUpdated) {
+        return;
+        }
+       getStudents()
+         .then(data => {
+           if(mounted) {
+             setStudents(data);
+           }
+         })
+       return () => {
+          mounted = false;
+          setIsUpdated(false);
+       }
+     }, [isUpdated, students])
 
     const handleUpdate = (e, stu) => {
         e.preventDefault();
@@ -67,15 +68,15 @@ const Manage = () => {
                 <thead>
                 <tr>
                   <th >ID</th>
-                  <th>Report Average Score</th>
-                  <th>Achivement</th>
-                  <th>Skill Certificate</th>
-                  <th>Interview Result</th>
-                  <th>School Accreditation</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Registration No</th>
+                  <th>Email</th>
+                  <th>Course</th>
                   <th>Action</th>
                 </tr>
                 </thead>
-                {/* <tbody>
+                <tbody>
                   { students.map((stu) =>
 
                   <tr key={stu.id}>
@@ -100,7 +101,7 @@ const Manage = () => {
                               onHide={EditModelClose}></UpdateStudentModal>
                 </td>
                 </tr>)}
-              </tbody> */}
+              </tbody>
             </Table>
             <ButtonToolbar>
                 <Button variant="primary" onClick={handleAdd}>
