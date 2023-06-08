@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import logo2 from '../static/logo2.png';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -28,39 +29,58 @@ const Register = () => {
   }
   
   return (
-    <section className="hero has-background-grey-light is-fullheight is-fullwidth">
+    <section>
       <div className="hero-body">
         <div className="container">
           <div className="column is-centered">
             <div className="column is-4-desktop">
+                <img src={logo2} bg="dark" variant="dark" expand="lg"/>
+                  <h1 className='sas'>Student Admission System</h1>
                 <form onSubmit={ Register } className="box">
                 <p className='has-text-centered'>{msg}</p>
+                  <h4 className='title'>Register</h4>
+                    <hr/>
                     <div className="field mt-5">
                         <label className="label">Name</label>
                         <div className="controls">
-                            <input type="text" className="input" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                            <input type="text" className="input is-rounded" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
                         </div>
                     </div>
-                    <div className="field mt-5">
-                        <label className="label">Email</label>
-                        <div className="controls">
-                            <input type="text" className="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        </div>
+                    <div class="field mt-5">
+                      <label className='label'>Email</label>
+                      <p class="control has-icons-left has-icons-right">
+                      <input type="text" className="input is-rounded" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                          <i class="fas fa-check"></i>
+                        </span>
+                      </p>
                     </div>
-                    <div className="field mt-5">
-                        <label className="label">Password</label>
-                        <div className="controls">
-                            <input type="password" className="input" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                        </div>
+                    <div class="field mt-5">
+                      <label className='label'> Password</label>
+                      <p class="control has-icons-left  ">
+                      <input type="password" className="input is-rounded" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-lock"></i>
+                        </span>
+                      </p>
                     </div>
                     <div className="field mt-5">
                         <label className="label"> Confirm Password</label>
                         <div className="controls">
-                            <input type="password" className="input" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)}/>
+                            <input type="password" className="input is-rounded" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)}/>
                         </div>
                     </div>
                     <div className="field mt-5">
-                        <button className="button is-success is-fullwidth">Register</button>
+                        <button className="button is-black is-fullwidth is-rounded">Register</button>
+                    </div>
+                    <hr/>
+                    <div className='turn'>
+                      <a href='/'>
+                        Already have an account?
+                      </a>
                     </div>
                 </form>
             </div>

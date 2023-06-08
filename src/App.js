@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
-import User from "./components/user/User"
+import User from "./components/user/user"
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 
 import Home from "./components/Home";
 import Students from "./components/Students";
+
 // import StudentList from "./components/StudentList";
 import Manage from "./components/Manage";
 import AdmissionResult from "./components/AdmissionResult";
