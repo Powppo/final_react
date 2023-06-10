@@ -16,6 +16,8 @@ import Students from "./components/Students";
 // import StudentList from "./components/StudentList";
 import Manage from "./components/Manage";
 import AdmissionResult from "./components/AdmissionResult";
+import AddStudentModal from "./components/AddStudentModal";
+import UpdateStudent from "./components/UpdateStudent";
 
 
 
@@ -33,6 +35,8 @@ function App() {
         <Route exact path='/students' element={[<Navigation/>,<Students/>]}/>
         <Route exact path='/manage' element={[<Navigation/>,<Manage/>]}/>
         <Route exact path='/admissionresult' element={[<Navigation/>,<AdmissionResult/>]}/>
+        <Route exact path='/addstudent' element={[<Navigation/>,<AddStudentModal/>]}/>
+        <Route exact path='/updatestudent/:studentId' element={[<UpdateStudent/>]}/>
       </Routes>
       
     </BrowserRouter>

@@ -4,14 +4,15 @@ import {FormControl, FormGroup, FormLabel} from 'react-bootstrap';
 import { addStudent } from '../services/StudentService';
 
 
-const AddStudentModal = (props) => {
+const AddStudentModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
         addStudent(e.target)
         .then((result)=>{
             alert(result);
-            props.setUpdated(true);
+            // eslint-disable-next-line no-undef
+            setUpdated(true);
         },
         (error)=>{
             alert("Failed to Add Student");
@@ -22,7 +23,7 @@ const AddStudentModal = (props) => {
         <div className="container">
 
             <Modal
-                {...props}
+                
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered >
@@ -67,7 +68,7 @@ const AddStudentModal = (props) => {
                     </Row>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="danger" type="submit" onClick={props.onHide}>
+                <Button variant="danger" type="submit" >
                         Close
                 </Button>
 

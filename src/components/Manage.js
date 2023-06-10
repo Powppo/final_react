@@ -7,6 +7,8 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import AddStudentModal from "./AddStudentModal";
 import UpdateStudentModal from "./UpdateStudentModal";
 import { getStudents, deleteStudent } from '../services/StudentService';
+import { generatePath } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Manage = () => {
@@ -41,7 +43,8 @@ const Manage = () => {
 
     const handleAdd = (e) => {
         e.preventDefault();
-        setAddModalShow(true);
+        setEditModalShow();
+        generatePath('/addstudent');
     };
 
     const handleDelete = (e, studentId) => {
@@ -77,9 +80,9 @@ const Manage = () => {
                 </tr>
                 </thead>
                 <tbody>
-                  { students.map((stu) =>
+                  { students.map((stu, i) =>
 
-                  <tr key={stu.id}>
+                  <tr key={i}>
                   <td>{stu.studentId}</td>
                   <td>{stu.FirstName}</td>
                   <td>{stu.LastName}</td>
@@ -93,20 +96,18 @@ const Manage = () => {
                         <RiDeleteBin5Line />
                   </Button>
                   <span>&nbsp;&nbsp;&nbsp;</span>
-                  <Button className="mr-2"
-                    onClick={event => handleUpdate(event,stu)}>
-                        <FaEdit />
-                  </Button>
-                  <UpdateStudentModal show={editModalShow} student={editStudent} setUpdated={setIsUpdated}
-                              onHide={EditModelClose}></UpdateStudentModal>
+                  <Link className='text-decoration-none btn btn-sm btn-success' to={'/updatestudent/${stu.studentId}'}>
+                    Update</Link>
+                  {/* <UpdateStudentModal show={editModalShow} student={editStudent} setUpdated={setIsUpdated}
+                              onHide={EditModelClose}></UpdateStudentModal> */}
                 </td>
                 </tr>)}
               </tbody>
             </Table>
             <ButtonToolbar>
-                <Button variant="primary" onClick={handleAdd}>
+                <Link className='text-decoration-none btn btn-sm btn-success' to='/addstudent'>
                 Add Student
-                </Button>
+                </Link>
                 <AddStudentModal show={addModalShow} setUpdated={setIsUpdated}
                 onHide={AddModelClose}></AddStudentModal>
             </ButtonToolbar>
