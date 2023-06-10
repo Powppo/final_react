@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 
 import Home from "./components/Home";
 import Students from "./components/Students";
+
 // import StudentList from "./components/StudentList";
 import Manage from "./components/Manage";
 import AdmissionResult from "./components/AdmissionResult";
