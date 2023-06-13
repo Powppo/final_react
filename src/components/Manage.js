@@ -10,6 +10,7 @@ import { getStudents, deleteStudent } from '../services/StudentService';
 import { generatePath } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import "../App.css";
 
 const Manage = () => {
     const [students, setStudents] = useState([]);

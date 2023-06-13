@@ -1,41 +1,61 @@
-import React from 'react'
+import React, { Fragment } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
 
-const Navbar = () => {
-  return (
-    <nav className="navbar is-light" role="navigation" aria-label="main navigation">
-        <div className='container'>
-      <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
-        </a>
-    
-        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-    
-      <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          <a className="navbar-item">
-            Home
-          </a>
-        </div>
-    
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-light">
-                Log Out
-              </a>
+const navbar = ({ isAuthenticated, logout }) => {
+    const authLinks = (
+        <Fragment>
+            <li className='nav-item'>
+                <NavLink className='nav-link' to='/dashboard'>Dashboard</NavLink>
+            </li>
+            <li className='nav-item'>
+                <a className='nav-link' onClick={logout} href='#!'>Logout</a>
+            </li>
+        </Fragment>
+    );
+
+    const guestLinks = (
+        <Fragment>
+            <li className='nav-item'>
+                <NavLink className='nav-link' to='/login'>Login</NavLink>
+            </li>
+            <li className='nav-item'>
+                <NavLink className='nav-link' to='/register'>Register</NavLink>
+            </li>
+        </Fragment>
+    );
+
+    return (
+        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+            <div className='container-fluid'>
+                <Link className='navbar-brand' exact to='/'>Session Auth</Link>
+                <button 
+                    className='navbar-toggler' 
+                    type='button' 
+                    data-bs-toggle='collapse' 
+                    data-bs-target='#navbarNav' 
+                    aria-controls='navbarNav' 
+                    aria-expanded='false' 
+                    aria-label='Toggle navigation'
+                >
+                    <span className='navbar-toggler-icon'></span>
+                </button>
+                <div className='collapse navbar-collapse' id='navbarNav'>
+                    <ul className='navbar-nav'>
+                        <li className='nav-item'>
+                            <NavLink className='nav-link' exact to='/'>Home</NavLink>
+                        </li>
+                        { isAuthenticated ? authLinks : guestLinks }
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </nav>
-  )
-}
+        </nav>
+    );
+};
 
-export default Navbar
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { logout })(navbar);

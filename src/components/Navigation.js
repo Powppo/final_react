@@ -12,7 +12,6 @@ import {Navbar} from 'react-bootstrap';
 import logo from '../static/logo.png';
 import "../App.css";
 
-
 const Navigation = () => {
   return (
     <div>
@@ -24,9 +23,9 @@ const Navigation = () => {
               height="50"
               className="d-inline-block align-center"
               alt="React Bootstrap logo"
-            />{' '}
-            Student Admission System
+            />
         </Navbar.Brand>
+        <h1>Student Admission System</h1>
     </Navbar>
     <div className='sidebar'>
     <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">

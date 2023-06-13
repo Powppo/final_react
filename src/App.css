@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+
 body, html {
   height: 100%;
   width: 100%;
@@ -13,6 +15,8 @@ body, html {
    height: 100vh;
    float: left;
    overflow: 'scroll initial';
+   font-family: 'Exo 2', sans-serif;
+   font-weight: bold;
 }
 
 .side-container {
@@ -40,5 +44,15 @@ body, html {
    bottom: 0;
    color: white;
    text-align: center;
-   
-   }
+}
+
+h1{
+   font-family: 'Exo 2', sans-serif;
+   font-weight: bold;
+   color: white;
+   margin-top: 50px;
+}
+
+Table {
+   font-family: 'Exo 2', sans-serif; 
+}
