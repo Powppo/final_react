@@ -115,11 +115,10 @@ const Manage = () => {
 
             </Table>
             <ButtonToolbar>
-                <Link className='text-decoration-none btn btn-sm btn-success' to='/addstudent'>
+
+            <Link className='text-decoration-none btn btn-sm btn-success' to='/addstudent'>
                 Add Student
                 </Link>
-                <AddStudentModal show={addModalShow} setUpdated={setIsUpdated}
-                onHide={AddModelClose}></AddStudentModal>
             </ButtonToolbar>
         </div>
         </div>
