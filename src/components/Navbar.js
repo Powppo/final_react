@@ -4,10 +4,21 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 
 const navbar = ({ isAuthenticated, logout }) => {
-    const authLinks = (
+    const authUserLinks = (
         <Fragment>
             <li className='nav-item'>
-                <NavLink className='nav-link' to='/dashboard'>Dashboard</NavLink>
+                <NavLink className='nav-link' to='/User'>Submit Score</NavLink>
+            </li>
+            <li className='nav-item'>
+                <a className='nav-link' onClick={logout} href='#!'>Logout</a>
+            </li>
+        </Fragment>
+    );
+    
+    const authAdminLinks = (
+        <Fragment>
+            <li className='nav-item'>
+                <NavLink className='nav-link' to='/students'>Students</NavLink>
             </li>
             <li className='nav-item'>
                 <a className='nav-link' onClick={logout} href='#!'>Logout</a>
@@ -29,7 +40,7 @@ const navbar = ({ isAuthenticated, logout }) => {
     return (
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
             <div className='container-fluid'>
-                <Link className='navbar-brand' exact to='/'>Session Auth</Link>
+                <Link className='navbar-brand' exact to='/'>Student Admission System</Link>
                 <button 
                     className='navbar-toggler' 
                     type='button' 
@@ -46,7 +57,7 @@ const navbar = ({ isAuthenticated, logout }) => {
                         <li className='nav-item'>
                             <NavLink className='nav-link' exact to='/'>Home</NavLink>
                         </li>
-                        { isAuthenticated ? authLinks : guestLinks }
+                        { isAuthenticated ? authUserLinks : guestLinks }
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { load_user } from './profile';
+
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -68,7 +70,7 @@ export const login = (username, password) => async dispatch => {
             dispatch({
                 type: LOGIN_SUCCESS
             });
-
+            dispatch(load_user());
         } else {
             dispatch({
                 type: LOGIN_FAIL

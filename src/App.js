@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Home from "./containers/Home";
 import Dashboard from "./containers/Dashboard";
 import Layout from "./hocs/Layout";
+import PrivateRoute from "./hocs/PrivateRoute";
 
 //import Login from "./components/html/login";
 import User from "./components/user/user"
@@ -30,12 +31,11 @@ function App() {
       <Router>
         <Layout>
         <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/Login' element={<Login/>} />
-          <Route path='/Register' element={<Register/>} />
-          <Route path='/dashboard' element={<Dashboard/>} />
-
-          <Route path='/User' element={<User/>} />
+          <Route exact path='/' element={<Home/>} />
+          <Route exact path='/Login' element={<Login/>} />
+          <Route exact path='/Register' element={<Register/>} />
+          <Route exact path='/User' element={<User/>}/>
+          
           <Route exact path='/InputData' element={[<Navigation/>,<Home/>]}/>
           <Route exact path='/students' element={[<Navigation/>,<Students/>]}/>
           <Route exact path='/manage' element={[<Navigation/>,<Manage/>]}/>
