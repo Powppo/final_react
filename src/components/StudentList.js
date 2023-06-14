@@ -27,11 +27,13 @@ class StudentList extends React.Component{
             {this.state.details.map((output, id) =>(
                 <div key={id}>
                     <h2>{output.studentId}</h2>
-                    <h2>{output.FirstName}</h2>
-                    <h2>{output.LastName}</h2>
-                    <h2>{output.RegistrationNo}</h2>
-                    <h2>{output.Email}</h2>
-                    <h2>{output.Course}</h2>
+                    <h2>{output.stdName}</h2>
+                    <h2>{output.averageScore}</h2>
+                    <h2>{output.achievement}</h2>
+                    <h2>{output.skillCertificate}</h2>
+                    <h2>{output.testResult}</h2>
+                    <h2>{output.schoolName}</h2>
+                    <h2>{output.schoolAccreditation}</h2>
 
                 </div>
 

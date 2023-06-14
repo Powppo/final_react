@@ -1,85 +1,161 @@
-import React,{ useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function UpdateStudent() {
+  const { studentId } = useParams();
+  const [values, setValues] = useState({
+    stdName: '',
+    averageScore: '',
+    achievement: '',
+    skillCertificate: '',
+    testResult: '',
+    schoolName: '',
+    schoolAccreditation: ''
+  });
 
-    const {studentId} = useParams();
-    const [values, setValues] = useState({
-        studentId: studentId,
-        FirstName: 'FirstName',
-        LastName: 'LastName',
-        Email: 'Email',
-        Password: 'Password',
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/students/${studentId}/`)
+      .then((response) => {
+        const studentData = response.data;
+        setValues({
+          stdName: studentData.stdName,
+          averageScore: studentData.averageScore,
+          achievement: studentData.achievement,
+          skillCertificate: studentData.skillCertificate,
+          testResult: studentData.testResult,
+          schoolName: studentData.schoolName,
+          schoolAccreditation: studentData.schoolAccreditation
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [studentId]);
 
-    });
-    useEffect(()=> {
-        axios.get('http://192.168.56.1:3000/manage/' + studentId)
-        .then(res => {
-            setValues({
-                ...values,
-                FirstName: res.data.FirstName,
-                LastName: res.data.LastName,
-                RegistrationNo: res.data.RegistrationNo,
-                Email: res.data.Email,
-                Course: res.data.Course,
-            })
-        })
-        .catch(err => console.log(err))
-    }, [])
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.put(`http://localhost:8000/api/students/${studentId}/`, values)
+      .then((res) => {
+        navigate('/manage');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.put('http://192.168.56.1:3000/manage/'+studentId, values)
-        .then(res =>{
-            navigate('/manage')
-        })
-        .catch(err => console.log(err))
-    }
-
-    return(
-        <div className='d-flex w-100 vh-100 justify-content-center align-items-center'>
-            <div className='w-50 border bg-secondary text-white p-5'>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor='FirstName'>First Name: </label>
-                        <input type='text' name='firstname' className='form-control' placeholder='Enter First Name' 
-                        value={values.FirstName} onChange={e => setValues({...values, FirstName: e.target.value})}/>
-                    </div>
-                    <div>
-                        <label htmlFor='LastName'>Last Name: </label>
-                        <input type='text' name='lastname' className='form-control' placeholder='Enter Last Name' 
-                        value={values.LastName} onChange={e => setValues({...values, LastName: e.target.value})}/>
-                    </div>
-                    <div>
-                        <label htmlFor='RegistrationNo'>Registration No.: </label>
-                        <input type='text' name='registrationno' className='form-control' placeholder='Enter Registration No.' 
-                        value={values.RegistrationNo} onChange={e => setValues({...values, RegistrationNo: e.target.value})}/>
-                    </div>
-                    <div>
-                        <label htmlFor='Email'>Email: </label>
-                        <input type='text' name='email' className='form-control' placeholder='Enter Email' 
-                        value={values.Email} onChange={e => setValues({...values, Email: e.target.value})}/>
-                    </div>
-                    <div>
-                        <label htmlFor='Course'>Course: </label>
-                        <input type='text' name='course' className='form-control' placeholder='Enter Course' 
-                        value={values.Course} onChange={e => setValues({...values, Course: e.target.value})}/>
-                    </div><br />
-                    <button className='btn btn-info'>Update</button>
-
-                </form>
-
-            </div>
-
-        </div>
-        
-    );
-};
-
+  return (
+    <div className="d-flex w-100 vh-100 justify-content-center align-items-center">
+      <div className="w-50 border bg-secondary text-white p-5">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="stdName">Student Name:</label>
+            <input
+              type="text"
+              id="stdName"
+              name="stdName"
+              className="form-control"
+              placeholder="Student Name"
+              value={values.stdName}
+              onChange={(e) =>
+                setValues({ ...values, stdName: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="averageScore">Average Score:</label>
+            <input
+              type="text"
+              id="averageScore"
+              name="averageScore"
+              className="form-control"
+              placeholder="Average Score"
+              value={values.averageScore}
+              onChange={(e) =>
+                setValues({ ...values, averageScore: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="achievement">Achievement:</label>
+            <input
+              type="text"
+              id="achievement"
+              name="achievement"
+              className="form-control"
+              placeholder="Achievement"
+              value={values.achievement}
+              onChange={(e) =>
+                setValues({ ...values, achievement: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="skillCertificate">Skill Certificate:</label>
+            <input
+              type="text"
+              id="skillCertificate"
+              name="skillCertificate"
+              className="form-control"
+              placeholder="Skill Certificate"
+              value={values.skillCertificate}
+              onChange={(e) =>
+                setValues({ ...values, skillCertificate: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="testResult">Test Result:</label>
+            <input
+              type="text"
+              id="testResult"
+              name="testResult"
+              className="form-control"
+              placeholder="Test Result"
+              value={values.testResult}
+              onChange={(e) =>
+                setValues({ ...values, testResult: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="schoolName">School Name:</label>
+            <input
+              type="text"
+              id="schoolName"
+              name="schoolName"
+              className="form-control"
+              placeholder="School Name"
+              value={values.schoolName}
+              onChange={(e) =>
+                setValues({ ...values, schoolName: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="schoolAccreditation">School Accreditation:</label>
+            <input
+              type="text"
+              id="schoolAccreditation"
+              name="schoolAccreditation"
+              className="form-control"
+              placeholder="School Accreditation"
+              value={values.schoolAccreditation}
+              onChange={(e) =>
+                setValues({ ...values, schoolAccreditation: e.target.value })
+              }
+            />
+          </div>
+          <br />
+          <button type="submit" className="btn btn-info">
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
 
 export default UpdateStudent;
-

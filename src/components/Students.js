@@ -25,22 +25,26 @@ const Students = () => {
         <thead>
             <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Registration No</th>
-            <th>Email</th>
-            <th>Course</th>
+            <th>Student Name</th>
+            <th>Average Score</th>
+            <th>Achievement</th>
+            <th>Skill Certificate</th>
+            <th>Test Result</th>
+            <th>School Name</th>
+            <th>School Accreditation</th>
             </tr>
         </thead>
         <tbody>
             {students.map((stu) =>
             <tr key={stu.id}>
                 <td>{stu.studentId}</td>
-                <td>{stu.FirstName}</td>
-                <td>{stu.LastName}</td>
-                <td>{stu.RegistrationNo}</td>
-                <td>{stu.Email}</td>
-                <td>{stu.Course}</td>
+                <td>{stu.stdName}</td>
+                <td>{stu.averageScore}</td>
+                <td>{stu.achievement}</td>
+                <td>{stu.skillCertificate}</td>
+                <td>{stu.testResult}</td>
+                <td>{stu.schoolName}</td>
+                <td>{stu.schoolAccreditation}</td>
             </tr>)}
         </tbody>
     </Table>

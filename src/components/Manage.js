@@ -72,38 +72,47 @@ const Manage = () => {
                 <thead>
                 <tr>
                   <th >ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Registration No</th>
-                  <th>Email</th>
-                  <th>Course</th>
+                  <th>Student Name</th>
+                  <th>Average Score</th>
+                  <th>Achievement</th>
+                  <th>Skill Certificate</th>
+                  <th>Test Result</th>
+                  <th>School Name</th>
+                  <th>School Accreditation</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  { students.map((stu, i) =>
+                  {students.map((stu, k) => (
+                    <tr key={k}>
+                      <td>{stu.studentId}</td>
+                      <td>{stu.stdName}</td>
+                      <td>{stu.averageScore}</td>
+                      <td>{stu.achievement}</td>
+                      <td>{stu.skillCertificate}</td>
+                      <td>{stu.testResult}</td>
+                      <td>{stu.schoolName}</td>
+                      <td>{stu.schoolAccreditation}</td>
+                      <td>
+                        <Button
+                          className="mr-2"
+                          variant="danger"
+                          onClick={(event) => handleDelete(event, stu.studentId)}
+                        >
+                          <RiDeleteBin5Line />
+                        </Button>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <Link
+                          className="text-decoration-none btn btn-sm btn-success"
+                          to={`/updatestudent/${stu.studentId}`}
+                        >
+                          Update
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
 
-                  <tr key={i}>
-                  <td>{stu.studentId}</td>
-                  <td>{stu.FirstName}</td>
-                  <td>{stu.LastName}</td>
-                  <td>{stu.RegistrationNo}</td>
-                  <td>{stu.Email}</td>
-                  <td>{stu.Course}</td>
-                  <td>
-
-                  <Button className="mr-2" variant="danger"
-                    onClick={event => handleDelete(event,stu.studentId)}>
-                        <RiDeleteBin5Line />
-                  </Button>
-                  <span>&nbsp;&nbsp;&nbsp;</span>
-                  <Link className='text-decoration-none btn btn-sm btn-success' to={'/updatestudent/${stu.studentId}'}>
-                    Update</Link>
-                  {/* <UpdateStudentModal show={editModalShow} student={editStudent} setUpdated={setIsUpdated}
-                              onHide={EditModelClose}></UpdateStudentModal> */}
-                </td>
-                </tr>)}
-              </tbody>
             </Table>
             <ButtonToolbar>
                 <Link className='text-decoration-none btn btn-sm btn-success' to='/addstudent'>
