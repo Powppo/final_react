@@ -4,7 +4,7 @@ import {Table} from 'react-bootstrap';
 import {Button,ButtonToolbar } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
-import AddStudentModal from "./AddStudentModal";
+import AddStudentModal from "./AddStudent";
 import UpdateStudentModal from "./UpdateStudentModal";
 import { getStudents, deleteStudent } from '../services/StudentService';
 import { generatePath } from 'react-router-dom';
