@@ -4,21 +4,10 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 
 const navbar = ({ isAuthenticated, logout }) => {
-    const authUserLinks = (
+    const authLinks = (
         <Fragment>
             <li className='nav-item'>
-                <NavLink className='nav-link' to='/User'>Submit Score</NavLink>
-            </li>
-            <li className='nav-item'>
-                <a className='nav-link' onClick={logout} href='#!'>Logout</a>
-            </li>
-        </Fragment>
-    );
-    
-    const authAdminLinks = (
-        <Fragment>
-            <li className='nav-item'>
-                <NavLink className='nav-link' to='/students'>Students</NavLink>
+                <NavLink className='nav-link' to='/user'>Submit Score</NavLink>
             </li>
             <li className='nav-item'>
                 <a className='nav-link' onClick={logout} href='#!'>Logout</a>
@@ -40,7 +29,7 @@ const navbar = ({ isAuthenticated, logout }) => {
     return (
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
             <div className='container-fluid'>
-                <Link className='navbar-brand' exact to='/'>Student Admission System</Link>
+                <Link className='navbar-brand' exact to='/'>Session Auth</Link>
                 <button 
                     className='navbar-toggler' 
                     type='button' 
@@ -57,7 +46,7 @@ const navbar = ({ isAuthenticated, logout }) => {
                         <li className='nav-item'>
                             <NavLink className='nav-link' exact to='/'>Home</NavLink>
                         </li>
-                        { isAuthenticated ? authUserLinks : guestLinks }
+                        { isAuthenticated ? authLinks : guestLinks }
                     </ul>
                 </div>
             </div>
@@ -69,4 +58,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { logout })(navbar);
+export default connect(mapStateToProps, { logout })(navbar);    

@@ -25,9 +25,13 @@ const Login = ({ login, isAuthenticated }) => {
       login(username, password);
   };
 
-  if (isAuthenticated )
-      return <Navigate to='/' />;
-
+  if (isAuthenticated && username === 'afrizal' && password === 'afrizal123') {
+    return <Navigate to='/students' />;
+  } else if (isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+    
+  
 /*
 class Register extends Component {
 

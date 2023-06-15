@@ -15,18 +15,6 @@ import "../App.css";
 const Navigation = () => {
   return (
     <div>
-    <Navbar bg="dark" variant="dark" expand="lg" id="my-nav">
-        <Navbar.Brand className="app-logo" href="/">
-            <img
-              src={logo}
-              width="40"
-              height="50"
-              className="d-inline-block align-center"
-              alt="React Bootstrap logo"
-            />
-        </Navbar.Brand>
-        <h1>Student Admission System</h1>
-    </Navbar>
     <div className='sidebar'>
     <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
