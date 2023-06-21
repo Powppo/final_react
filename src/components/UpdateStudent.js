@@ -4,18 +4,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function UpdateStudent() {
   const { studentId } = useParams();
-  const [values, setValues] = useState({
-    stdName: '',
-    averageScore: '',
-    achievement: '',
-    skillCertificate: '',
-    testResult: '',
-    schoolName: '',
-    schoolAccreditation: ''
+  const navigate = useNavigate();
+  const handleChange = (e)=>{
+    const {name, value} = e.target;
+    setValues((prevFormData) => ({
+      ...prevFormData,[name]: value, 
+    }));
+  };
+  const [formData, setValues] = useState({
+    stdName: "",
+    averageScore: "",
+    achievement: "",
+    skillCertificate: "",
+    testResult: "",
+    schoolName: "",
+    schoolAccreditation: ""
   });
 
+
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/students/${studentId}/`)
+    axios.get(`http://localhost:8000/api/students/${studentId}`)
       .then((response) => {
         const studentData = response.data;
         setValues({
@@ -33,11 +41,10 @@ function UpdateStudent() {
       });
   }, [studentId]);
 
-  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8000/api/students/${studentId}/`, values)
+    axios.post('http://localhost:8000/api/students/', formData)
       .then((res) => {
         navigate('/manage');
       })
@@ -45,6 +52,8 @@ function UpdateStudent() {
         console.log(err);
       });
   };
+
+
 
   return (
     <div className="d-flex w-100 vh-100 justify-content-center align-items-center">
@@ -58,25 +67,28 @@ function UpdateStudent() {
               name="stdName"
               className="form-control"
               placeholder="Student Name"
-              value={values.stdName}
+              value={formData.stdName}
               onChange={(e) =>
-                setValues({ ...values, stdName: e.target.value })
+                setValues({ ...formData, stdName: e.target.value })
               }
             />
           </div>
           <div>
             <label htmlFor="averageScore">Average Score:</label>
-            <input
-              type="text"
+            <select      
               id="averageScore"
-              name="averageScore"
-              className="form-control"
-              placeholder="Average Score"
-              value={values.averageScore}
-              onChange={(e) =>
-                setValues({ ...values, averageScore: e.target.value })
-              }
-            />
+              name='averageScore'
+              value={formData.averageScore}
+              onChange={ handleChange}>
+              <option value="">select</option>
+              <option value={5}>85-100 </option>
+              <option value={4}>70-84 </option>
+              <option value={3}>55-69 </option>
+              <option value={2}>45-54 </option>
+              <option value={1}>≤ 44 </option>
+
+            </select>
+            
           </div>
           <div>
             <label htmlFor="achievement">Achievement:</label>
@@ -86,39 +98,42 @@ function UpdateStudent() {
               name="achievement"
               className="form-control"
               placeholder="Achievement"
-              value={values.achievement}
+              value={formData.achievement}
               onChange={(e) =>
-                setValues({ ...values, achievement: e.target.value })
+                setValues({ ...formData, achievement: e.target.value })
               }
             />
           </div>
           <div>
             <label htmlFor="skillCertificate">Skill Certificate:</label>
-            <input
-              type="text"
+            <select      
               id="skillCertificate"
-              name="skillCertificate"
-              className="form-control"
-              placeholder="Skill Certificate"
-              value={values.skillCertificate}
-              onChange={(e) =>
-                setValues({ ...values, skillCertificate: e.target.value })
-              }
-            />
+              name='skillCertificate'
+              value={formData.skillCertificate}
+              onChange={ handleChange}>
+              <option value="">select</option>
+              <option value={5}>More than four</option>
+              <option value={4}>Three</option>
+              <option value={3}>Two</option>
+              <option value={2}>One</option>
+              <option value={1}>No</option>
+            </select>
           </div>
           <div>
             <label htmlFor="testResult">Test Result:</label>
-            <input
-              type="text"
+            <select      
               id="testResult"
-              name="testResult"
-              className="form-control"
-              placeholder="Test Result"
-              value={values.testResult}
-              onChange={(e) =>
-                setValues({ ...values, testResult: e.target.value })
-              }
-            />
+              name='testResult'
+              value={formData.testResult}
+              onChange={ handleChange}>
+              <option value="">select</option>
+              <option value={5}>85-100 </option>
+              <option value={4}>70-84 </option>
+              <option value={3}>55-69 </option>
+              <option value={2}>45-54 </option>
+              <option value={1}>≤ 44 </option>
+
+            </select>
           </div>
           <div>
             <label htmlFor="schoolName">School Name:</label>
@@ -128,25 +143,25 @@ function UpdateStudent() {
               name="schoolName"
               className="form-control"
               placeholder="School Name"
-              value={values.schoolName}
+              value={formData.schoolName}
               onChange={(e) =>
-                setValues({ ...values, schoolName: e.target.value })
+                setValues({ ...formData, schoolName: e.target.value })
               }
             />
           </div>
           <div>
             <label htmlFor="schoolAccreditation">School Accreditation:</label>
-            <input
-              type="text"
+            <select      
               id="schoolAccreditation"
-              name="schoolAccreditation"
-              className="form-control"
-              placeholder="School Accreditation"
-              value={values.schoolAccreditation}
-              onChange={(e) =>
-                setValues({ ...values, schoolAccreditation: e.target.value })
-              }
-            />
+              name='schoolAccreditation'
+              value={formData.schoolAccreditation}
+              onChange={ handleChange}>
+              <option value="">select</option>
+              <option value={3}>A - High Level</option>
+              <option value={2}>B - Good Level</option>
+              <option value={1}>C - Low Level</option>
+
+            </select>
           </div>
           <br />
           <button type="submit" className="btn btn-info">
