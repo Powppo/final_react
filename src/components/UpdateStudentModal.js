@@ -111,4 +111,3 @@ const UpdateStudentModal = (props) => {
 
 
 export default UpdateStudentModal;
-

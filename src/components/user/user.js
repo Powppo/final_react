@@ -1,36 +1,49 @@
-import React from 'react';
+import React,  { useState } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const User = () => {
-    const [achievement, setAchievement] = useState('');
-    const [schoolAccreditation, setSchoolAccreditation] = useState('');
-    const [testResult, setTestResult] = useState('');
-    const [nilaiBIndonesia, setNilaiBIndonesia] = useState('');
-    const [nilaiMathematic, setNilaiMathematic] = useState('');
-    const [nilaiEnglish, setNilaiEnglish] = useState('');
-    const [nilaiRata, setNilaiRata] = useState('');
-    const [sertif, setSertif] = useState('');
-    const [sekolah, setSekolah] = useState('');
-    const [totalSertif, setTotalSertif] = useState(0);
+function User () {
 
-    const submitUser = async (e) => {
+    const [formData, setValues] = useState({
+        stdName: "",
+        averageScore: "",
+        achievement: "",
+        skillCertificate: "",
+        testResult: "",
+        schoolName: "",
+        schoolAccreditation: ""
+      });
+      const navigate = useNavigate();
+      const handleChange = (e)=>{
+        const {name, value} = e.target;
+        setValues((prevFormData) => ({
+          ...prevFormData,[name]: value, 
+        }));
+      };
+
+      const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`${achievement} ${schoolAccreditation} ${testResult} ${nilaiBIndonesia} ${nilaiMathematic} ${nilaiEnglish} ${nilaiRata} ${sekolah} ${totalSertif}`)
-    };
+        axios.post('http://localhost:8000/api/students/', formData)
+          .then((res) => {
+            navigate('/');
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
 
-    const handleSertifChange = (event) => {
-        event.preventDefault();
-        const files = event.target.files;
-        const fileList = Array.from(files);
-        const totalFiles = fileList.length;
-        if (totalFiles > 0) {
-            setTotalSertif(totalFiles)
-            setSertif(fileList);
-        } else {
-            setSertif([]);
-        }
-    };
+    // const handleSertifChange = (event) => {
+    //     event.preventDefault();
+    //     const files = event.target.files;
+    //     const fileList = Array.from(files);
+    //     const totalFiles = fileList.length;
+    //     if (totalFiles > 0) {
+    //         setTotalSertif(totalFiles)
+    //         setSertif(fileList);
+    //     } else {
+    //         setSertif([]);
+    //     }
+    // };
 
     return (
         <section className="hero has-background-grey-light is-fullheight is-fullwidth">
@@ -38,9 +51,9 @@ const User = () => {
                 <div className="container">
                     <div className="columns is-centered">
                         <div className="column is-4-desktop">
-                            <form onSubmit={submitUser} className="box">
+                            <form onSubmit={handleSubmit} className="box">
                                 <p className="has-text-centered"></p>
-                                <div className="field mt-5">
+                                {/* <div className="field mt-5">
                                     <label className="label">Nilai Mathematic</label>
                                     <div className="control">
                                         <input
@@ -75,50 +88,84 @@ const User = () => {
                                             onChange={(e) => setNilaiEnglish(e.target.value)}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="field mt-5">
-                                    <label className="label">Nilai Rata-rata</label>
+                                    <label className="label">Student Name</label>
                                     <div className="control">
                                         <input
-                                            type="text"
-                                            className="input"
-                                            placeholder="Nilai Rata-rata"
-                                            value={nilaiRata}
-                                            onChange={(e) => setNilaiRata(e.target.value)}
+                                        type="text"
+                                        id="stdName"
+                                        name="stdName"
+                                        className="form-control"
+                                        placeholder="Student Name"
+                                        value={formData.stdName}
+                                        onChange={(e) =>
+                                            setValues({ ...formData, stdName: e.target.value })
+                                        }
                                         />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
-                                    <label className="label">Asal Sekolah</label>
-                                    <div className="control">
-                                        <input
-                                            type="text"
-                                            className="input"
-                                            placeholder="Sekolah"
-                                            value={sekolah}
-                                            onChange={(e) => setSekolah(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="field mt-5">
-                                    <label className="label">School Accreditation</label>
+                                <label className="label">Average Score</label>
                                     <div className="control">
                                         <div className="select">
-                                            <select
-                                                value={schoolAccreditation}
-                                                onChange={(e) => setSchoolAccreditation(e.target.value)}
-                                            >
-                                                <option value="1">C</option>
-                                                <option value="2">B</option>
-                                                <option value="3">A</option>
+                                            <select      
+                                            id="averageScore"
+                                            name='averageScore'
+                                            value={formData.averageScore}
+                                            onChange={ handleChange}>
+                                            <option value="">select</option>
+                                            <option value={5}>85-100 </option>
+                                            <option value={4}>70-84 </option>
+                                            <option value={3}>55-69 </option>
+                                            <option value={2}>45-54 </option>
+                                            <option value={1}>≤ 44 </option>
+
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="field mt-5">  
+                                    <label className="label">Achievement</label>
+                                    <div className="control">
+                                        <div className="select">
+                                            <select      
+                                            id="achievement"
+                                            name='achievement'
+                                            value={formData.achievement}
+                                            onChange={ handleChange}>
+                                            <option value="">select</option>
+                                            <option value={5} >International</option>
+                                            <option value={4}>National</option>
+                                            <option value={3}>Province</option>
+                                            <option value={2}>City</option>
+                                            <option value={1}>Others</option>
 
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="field mt-5">
-                                    <label className="label">Sertif</label>
+                                    <label className="label">Skill Certificate</label>
+                                    <div className="control">
+                                        <div className="select">
+                                            <select      
+                                            id="skillCertificate"
+                                            name='skillCertificate'
+                                            value={formData.skillCertificate}
+                                            onChange={ handleChange}>
+                                            <option value="">select</option>
+                                            <option value={5}>More than four</option>
+                                            <option value={4}>Three</option>
+                                            <option value={3}>Two</option>
+                                            <option value={2}>One</option>
+                                            <option value={1}>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="field mt-5">
+                                    <label className="label">Upload Certificate</label>
                                     <div className="control">
                                         <input
                                             type="file"
@@ -126,42 +173,67 @@ const User = () => {
                                             placeholder="Sertifikat"
                                             accept=".pdf"
                                             multiple
-                                            onChange={(e) => handleSertifChange(e)}
+                                            // onChange={(e) => handleSertifChange(e)}
                                         />
-                                    </div>
-                                </div>
-                                <div className="field mt-5">
-                                    <label className="label">Achievement</label>
-                                    <div className="control">
-                                        <div className="select">
-                                            <select
-                                                value={achievement}
-                                                onChange={(e) => setAchievement(e.target.value)}
-                                            >
-                                                <option value="1">Others</option>
-                                                <option value="2">Kota</option>
-                                                <option value="3">Provinsi</option>
-                                                <option value="4">National</option>
-                                                <option value="5">International</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Test Result</label>
                                     <div className="control">
+                                        <div className="select">
+                                            <select      
+                                            id="testResult"
+                                            name='testResult'
+                                            value={formData.testResult}
+                                            onChange={ handleChange}>
+                                            <option value="">select</option>
+                                            <option value={5}>85-100 </option>
+                                            <option value={4}>70-84 </option>
+                                            <option value={3}>55-69 </option>
+                                            <option value={2}>45-54 </option>
+                                            <option value={1}>≤ 44 </option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="field mt-5">
+                                    <label className="label">School Name</label>
+                                    <div className="control">
                                         <input
-                                            type="text"
-                                            className="input"
-                                            placeholder="Test Result"
-                                            value={testResult}
-                                            onChange={(e) => setTestResult(e.target.value)}
+                                        type="text"
+                                        id="schoolName"
+                                        name="schoolName"
+                                        className="form-control"
+                                        placeholder="School Name"
+                                        value={formData.schoolName}
+                                        onChange={(e) =>
+                                            setValues({ ...formData, schoolName: e.target.value })
+                                        }
                                         />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
-                                    <button className="button is-success is-fullwidth">
-                                        Submit
+                                    <label className="label">School Accreditation</label>
+                                    <div className="control">
+                                        <div className="select">
+                                            <select      
+                                            id="schoolAccreditation"
+                                            name='schoolAccreditation'
+                                            value={formData.schoolAccreditation}
+                                            onChange={ handleChange}>
+                                            <option value="">select</option>
+                                            <option value={3}>A - High Level</option>
+                                            <option value={2}>B - Good Level</option>
+                                            <option value={1}>C - Low Level</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="field mt-5">
+                                    <button type="submit" className="btn btn-info">
+                                        Add Student
                                     </button>
                                 </div>
                             </form>
